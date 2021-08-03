@@ -1,370 +1,371 @@
 {
   "schema": {
-  "title": "ConfirmPersonalUserData",
-  "description": "",
-  "type": "object",
-  "properties": {
-    "id": {
-      "title": "Идентификатор",
-      "type": "string",
-      "pattern": "/^[A-Z][a-z0-9_-]{3,19}$/"
-    },
-    "type": {
-      "type": "string",
-      "enum": ["ConfirmPersonalUserData"],
-      "default": "ConfirmPersonalUserData",
-      "widget": {
-        "formlyConfig": {
-          "hideExpression": "true"
+    "title": "ConfirmPersonalUserData",
+    "description": "",
+    "type": "object",
+    "properties": {
+      "id": {
+        "title": "Идентификатор",
+        "type": "string",
+        "pattern": "/^[A-Z][a-z0-9_-]{3,19}$/"
+      },
+      "type": {
+        "type": "string",
+        "enum": ["ConfirmPersonalUserData"],
+        "default": "ConfirmPersonalUserData",
+        "widget": {
+          "formlyConfig": {
+            "hideExpression": "true"
+          }
         }
-      }
-    },
-    "label": {
-      "type": "string",
-      "default": "",
-      "widget": {
-        "formlyConfig": {
-          "hideExpression": "true"
+      },
+      "label": {
+        "type": "string",
+        "default": "",
+        "widget": {
+          "formlyConfig": {
+            "hideExpression": "true"
+          }
         }
-      }
-    },
-    "attrs": {
-      "title": "Дополнительные атриубты",
-      "type": "object",
-      "properties": {
-        "warn": {
-          "title": "Дополнительное предупреждение внизу компонента",
-          "type": "object",
-          "properties": {
-            "title": {
-              "title": "Заголовок предупреждения",
-              "type": "string"
-            },
-            "desc": {
-              "title": "Текст",
-              "type": "string"
-            }
-          }
-        },
-        "actions": {
-          "title": "Доступные действия",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/componentAction"
-          }
-        },
-        "fields": {
-          "title": "Поля",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/supportedFields"
-          }
-        },
-        "clarifications": {
-          "type": "object",
-          "title": "Пояснительные переходы",
-          "additionalProperties": {
+      },
+      "attrs": {
+        "title": "Дополнительные атриубты",
+        "type": "object",
+        "properties": {
+          "warn": {
+            "title": "Дополнительное предупреждение внизу компонента",
             "type": "object",
             "properties": {
               "title": {
-                "title": "Текст ссылки",
-                "type":"string"
+                "title": "Заголовок предупреждения",
+                "type": "string"
               },
-              "text": {
-                "title": "Содержимое пояснение",
-                "type":"string"
+              "desc": {
+                "title": "Текст",
+                "type": "string"
               }
             }
+          },
+          "actions": {
+            "title": "Доступные действия",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/componentAction"
+            }
+          },
+          "fields": {
+            "title": "Поля",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/supportedFields"
+            }
+          },
+          "clarifications": {
+            "type": "object",
+            "title": "Пояснительные переходы",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "title": "Текст ссылки",
+                  "type":"string"
+                },
+                "text": {
+                  "title": "Содержимое пояснение",
+                  "type":"string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "componentAction": {
+        "title": "Тип действия",
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Надпись на кнопке"
+          },
+          "value": {
+            "type": "string",
+            "title": "значение для передачи",
+            "default": "",
+            "widget": {
+              "formlyConfig": {
+                "hideExpression": "true"
+              }
+            }
+          },
+          "action": {
+            "type": "string",
+            "enum": ["editPassportData"],
+            "title": "Действие",
+            "oneOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "editPassportData"
+                ],
+                "title": "Преход на редактирование персональных данных в ЛК"
+              }
+            ]
+          }
+        },
+        "required": ["label", "action"],
+        "dependencies": {
+          "action": {
+            "oneOf": [
+              {
+                "properties": {
+                  "action": {
+                    "enum": [
+                      "editPassportData"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": ["profileEdit"],
+                    "default": "profileEdit",
+                    "widget": {
+                      "formlyConfig": {
+                        "hideExpression": "true"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "supportedFields": {
+        "type": "object",
+        "properties": {
+          "fieldName": {
+            "type": "string",
+            "enum": ["firstName", "lastName", "middleName", "birthDate", "citizenshipCode", "birthPlace"],
+            "title": "Тип",
+            "oneOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "firstName"
+                ],
+                "title": "Фамилия"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "lastName"
+                ],
+                "title": "Имя"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "middleName"
+                ],
+                "title": "Отчество"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "birthDate"
+                ],
+                "title": "Дата рождения"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "citizenshipCode"
+                ],
+                "title": "Код страны рождения"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "birthPlace"
+                ],
+                "title": "Место рождения"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "rfPasportSeries"
+                ],
+                "title": "Серия паспорта РФ"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "rfPasportNumber"
+                ],
+                "title": "Номер паспорта РФ"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "rfPasportIssueDate"
+                ],
+                "title": "Дата выдачи паспорта РФ"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "rfPasportIssuedBy"
+                ],
+                "title": "Название подраздления выдавшее паспорт РФ"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "rfPasportIssuedById"
+                ],
+                "title": "Код подраздления выдавшее паспорт РФ"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "frgnPasportSeries"
+                ],
+                "title": "Серия паспорта иностранного гражданина"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "frgnPasportNumber"
+                ],
+                "title": "Номер паспорта иностранного гражданина"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "frgnPasportIssueDate"
+                ],
+                "title": "Дата выдачи паспорта иностранного гражданина"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "frgnPasportIssuedBy"
+                ],
+                "title": "Название подраздления выдавшее паспорт иностранного гражданина"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "frgnPasportExpiryDate"
+                ],
+                "title": "Дата завершения действия паспорта иностранного гражданина"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "frgnPasportLastName"
+                ],
+                "title": "Имя указанная в паспорте иностранного гражданина"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "frgnPasportFirstName"
+                ],
+                "title": "Фамилия указанная в паспорте иностранного гражданина"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "foreignPasportSeries"
+                ],
+                "title": "Серия заграничного паспорта РФ"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "foreignPasportNumber"
+                ],
+                "title": "Номер заграничного паспорта РФ"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "foreignPasportIssueDate"
+                ],
+                "title": "Дата выдачи заграничного паспорта РФ"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "foreignPasportIssuedBy"
+                ],
+                "title": "Название подразделения выдавшее заграничный паспорт РФ"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "inn"
+                ],
+                "title": "Инн организации"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "gender"
+                ],
+                "title": "Пол заявителя (скрытое поле)"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "omsNumber"
+                ],
+                "title": "Номер ОМС"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "omsSeries"
+                ],
+                "title": "Серия ОМС"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "snils"
+                ],
+                "title": "СНИЛС"
+              }
+            ]
+          },
+          "label": {
+            "type":"string",
+            "title": "Подпись поля"
+          }
+        },
+        "required": ["fieldName"]
+      },
+      "clarifications": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Ключ высплывающего пояснения",
+            "unique": true
+          },
+          "title": {
+            "type": "string",
+            "title": "Заголовок"
+          },
+          "text": {
+            "type": "string",
+            "title": "Текст"
           }
         }
       }
     }
   },
-  "definitions": {
-    "componentAction": {
-      "title": "Тип действия",
-      "type": "object",
-      "properties": {
-        "label": {
-          "type": "string",
-          "title": "Надпись на кнопке"
-        },
-        "value": {
-          "type": "string",
-          "title": "значение для передачи",
-          "default": "",
-          "widget": {
-            "formlyConfig": {
-              "hideExpression": "true"
-            }
-          }
-        },
-        "action": {
-          "type": "string",
-          "enum": ["editPassportData"],
-          "title": "Действие",
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "editPassportData"
-              ],
-              "title": "Преход на редактирование персональных данных в ЛК"
-            }
-          ]
-        }
-      },
-      "required": ["label", "action"],
-      "dependencies": {
-        "action": {
-          "oneOf": [
-            {
-              "properties": {
-                "action": {
-                  "enum": [
-                    "editPassportData"
-                  ]
-                },
-                "type": {
-                  "type": "string",
-                  "enum": ["profileEdit"],
-                  "default": "profileEdit",
-                  "widget": {
-                    "formlyConfig": {
-                      "hideExpression": "true"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    },
-    "supportedFields": {
-      "type": "object",
-      "properties": {
-        "fieldName": {
-          "type": "string",
-          "enum": ["firstName", "lastName", "middleName", "birthDate", "citizenshipCode", "birthPlace"],
-          "title": "Тип",
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": [
-                "firstName"
-              ],
-              "title": "Фамилия"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "lastName"
-              ],
-              "title": "Имя"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "middleName"
-              ],
-              "title": "Отчество"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "birthDate"
-              ],
-              "title": "Дата рождения"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "citizenshipCode"
-              ],
-              "title": "Код страны рождения"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "birthPlace"
-              ],
-              "title": "Место рождения"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "rfPasportSeries"
-              ],
-              "title": "Серия паспорта РФ"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "rfPasportNumber"
-              ],
-              "title": "Номер паспорта РФ"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "rfPasportIssueDate"
-              ],
-              "title": "Дата выдачи паспорта РФ"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "rfPasportIssuedBy"
-              ],
-              "title": "Название подраздления выдавшее паспорт РФ"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "rfPasportIssuedById"
-              ],
-              "title": "Код подраздления выдавшее паспорт РФ"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "frgnPasportSeries"
-              ],
-              "title": "Серия паспорта иностранного гражданина"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "frgnPasportNumber"
-              ],
-              "title": "Номер паспорта иностранного гражданина"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "frgnPasportIssueDate"
-              ],
-              "title": "Дата выдачи паспорта иностранного гражданина"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "frgnPasportIssuedBy"
-              ],
-              "title": "Название подраздления выдавшее паспорт иностранного гражданина"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "frgnPasportExpiryDate"
-              ],
-              "title": "Дата завершения действия паспорта иностранного гражданина"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "frgnPasportLastName"
-              ],
-              "title": "Имя указанная в паспорте иностранного гражданина"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "frgnPasportFirstName"
-              ],
-              "title": "Фамилия указанная в паспорте иностранного гражданина"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "foreignPasportSeries"
-              ],
-              "title": "Серия заграничного паспорта РФ"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "foreignPasportNumber"
-              ],
-              "title": "Номер заграничного паспорта РФ"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "foreignPasportIssueDate"
-              ],
-              "title": "Дата выдачи заграничного паспорта РФ"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "foreignPasportIssuedBy"
-              ],
-              "title": "Название подразделения выдавшее заграничный паспорт РФ"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "inn"
-              ],
-              "title": "Инн организации"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "gender"
-              ],
-              "title": "Пол заявителя (скрытое поле)"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "omsNumber"
-              ],
-              "title": "Номер ОМС"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "omsSeries"
-              ],
-              "title": "Серия ОМС"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "snils"
-              ],
-              "title": "СНИЛС"
-            }
-          ]
-        },
-        "label": {
-          "type":"string",
-          "title": "Подпись поля"
-        }
-      },
-      "required": ["fieldName"]
-    },
-    "clarifications": {
-      "type": "object",
-      "properties": {
-        "key": {
-          "type": "string",
-          "title": "Ключ высплывающего пояснения",
-          "unique": true
-        },
-        "title": {
-          "type": "string",
-          "title": "Заголовок"
-        },
-        "text": {
-          "type": "string",
-          "title": "Текст"
-        }
-      }
-    }
-  }
-}
+  "model": {}
 }
