@@ -1,11 +1,11 @@
 
-<div style="margin-bottom: 20px;">
+<!--<div style="margin-bottom: 20px;">
   <button *ngFor="let example of examples"
   (click)="loadExample(example)"
   class="btn" [class.btn-primary]="type === example">
     {{ example }}
   </button>
-</div>
+</div>-->
 
 <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="fields">
   <formly-form [model]="modelWithAdditionalPropertiesAsArrays" [fields]="fields" [options]="options" [form]="form"></formly-form>
