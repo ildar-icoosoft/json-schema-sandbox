@@ -98,9 +98,22 @@ export function constValidationMessage(err, field: FormlyFieldConfig) {
         { name: 'boolean', extends: 'checkbox' },
         { name: 'enum', extends: 'select' },
         { name: 'null', component: NullTypeComponent, wrappers: ['form-field'] },
-        { name: 'array', component: ArrayTypeComponent },
-        { name: 'object', component: ObjectTypeComponent },
-        { name: 'multischema', component: MultiSchemaTypeComponent },
+        {
+          name: 'object',
+          component: ObjectTypeComponent,
+        },
+        {
+          name: 'array',
+          component: ArrayTypeComponent,
+        },
+        {
+          name: 'multischema',
+          component: MultiSchemaTypeComponent,
+        },
+        {
+          name: 'additionalProperties',
+          extends: 'object',
+        },
       ],
     }),
   ],
