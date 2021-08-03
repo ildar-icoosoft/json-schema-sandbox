@@ -1,360 +1,8 @@
 {
   "schema": {
-    "title": "ConfirmPersonalUserData",
-    "description": "",
-    "type": "object",
-    "properties": {
-      "id": {
-        "title": "Идентификатор",
-        "type": "string",
-        "pattern": "/^[A-Z][a-z0-9_-]{3,19}$/"
-      },
-      "type": {
-        "type": "string",
-        "enum": ["ConfirmPersonalUserData"],
-        "default": "ConfirmPersonalUserData",
-        "widget": {
-          "formlyConfig": {
-            "hideExpression": "true"
-          }
-        }
-      },
-      "label": {
-        "type": "string",
-        "default": "",
-        "widget": {
-          "formlyConfig": {
-            "hideExpression": "true"
-          }
-        }
-      },
-      "attrs": {
-        "title": "Дополнительные атриубты",
-        "type": "object",
-        "properties": {
-          "warn": {
-            "title": "Дополнительное предупреждение внизу компонента",
-            "type": "object",
-            "properties": {
-              "title": {
-                "title": "Заголовок предупреждения",
-                "type": "string"
-              },
-              "desc": {
-                "title": "Текст",
-                "type": "string"
-              }
-            }
-          },
-          "actions": {
-            "title": "Доступные действия",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/componentAction"
-            }
-          },
-          "fields": {
-            "title": "Поля",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/supportedFields"
-            }
-          },
-          "clarifications": {
-            "type": "object",
-            "title": "Пояснительные переходы",
-            "additionalProperties": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "title": "Текст ссылки",
-                  "type":"string"
-                },
-                "text": {
-                  "title": "Содержимое пояснение",
-                  "type":"string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "definitions": {
-      "componentAction": {
-        "title": "Тип действия",
-        "type": "object",
+      "Confirmation": {
         "properties": {
-          "label": {
-            "type": "string",
-            "title": "Надпись на кнопке"
-          },
-          "value": {
-            "type": "string",
-            "title": "значение для передачи",
-            "default": "",
-            "widget": {
-              "formlyConfig": {
-                "hideExpression": "true"
-              }
-            }
-          },
-          "action": {
-            "type": "string",
-            "enum": ["editPassportData"],
-            "title": "Действие",
-            "oneOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "editPassportData"
-                ],
-                "title": "Преход на редактирование персональных данных в ЛК"
-              }
-            ]
-          }
-        },
-        "required": ["label", "action"],
-        "dependencies": {
-          "action": {
-            "oneOf": [
-              {
-                "properties": {
-                  "action": {
-                    "enum": [
-                      "editPassportData"
-                    ]
-                  },
-                  "type": {
-                    "type": "string",
-                    "enum": ["profileEdit"],
-                    "default": "profileEdit",
-                    "widget": {
-                      "formlyConfig": {
-                        "hideExpression": "true"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        }
-      },
-      "supportedFields": {
-        "type": "object",
-        "properties": {
-          "fieldName": {
-            "type": "string",
-            "enum": ["firstName", "lastName", "middleName", "birthDate", "citizenshipCode", "birthPlace"],
-            "title": "Тип",
-            "oneOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "firstName"
-                ],
-                "title": "Фамилия"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "lastName"
-                ],
-                "title": "Имя"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "middleName"
-                ],
-                "title": "Отчество"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "birthDate"
-                ],
-                "title": "Дата рождения"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "citizenshipCode"
-                ],
-                "title": "Код страны рождения"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "birthPlace"
-                ],
-                "title": "Место рождения"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "rfPasportSeries"
-                ],
-                "title": "Серия паспорта РФ"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "rfPasportNumber"
-                ],
-                "title": "Номер паспорта РФ"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "rfPasportIssueDate"
-                ],
-                "title": "Дата выдачи паспорта РФ"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "rfPasportIssuedBy"
-                ],
-                "title": "Название подраздления выдавшее паспорт РФ"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "rfPasportIssuedById"
-                ],
-                "title": "Код подраздления выдавшее паспорт РФ"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "frgnPasportSeries"
-                ],
-                "title": "Серия паспорта иностранного гражданина"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "frgnPasportNumber"
-                ],
-                "title": "Номер паспорта иностранного гражданина"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "frgnPasportIssueDate"
-                ],
-                "title": "Дата выдачи паспорта иностранного гражданина"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "frgnPasportIssuedBy"
-                ],
-                "title": "Название подраздления выдавшее паспорт иностранного гражданина"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "frgnPasportExpiryDate"
-                ],
-                "title": "Дата завершения действия паспорта иностранного гражданина"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "frgnPasportLastName"
-                ],
-                "title": "Имя указанная в паспорте иностранного гражданина"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "frgnPasportFirstName"
-                ],
-                "title": "Фамилия указанная в паспорте иностранного гражданина"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "foreignPasportSeries"
-                ],
-                "title": "Серия заграничного паспорта РФ"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "foreignPasportNumber"
-                ],
-                "title": "Номер заграничного паспорта РФ"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "foreignPasportIssueDate"
-                ],
-                "title": "Дата выдачи заграничного паспорта РФ"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "foreignPasportIssuedBy"
-                ],
-                "title": "Название подразделения выдавшее заграничный паспорт РФ"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "inn"
-                ],
-                "title": "Инн организации"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "gender"
-                ],
-                "title": "Пол заявителя (скрытое поле)"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "omsNumber"
-                ],
-                "title": "Номер ОМС"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "omsSeries"
-                ],
-                "title": "Серия ОМС"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "snils"
-                ],
-                "title": "СНИЛС"
-              }
-            ]
-          },
-          "label": {
-            "type":"string",
-            "title": "Подпись поля"
-          }
-        },
-        "required": ["fieldName"]
-      },
-      "clarifications": {
-        "type": "object",
-        "properties": {
-          "key": {
-            "type": "string",
-            "title": "Ключ высплывающего пояснения",
-            "unique": true
-          },
           "title": {
             "type": "string",
             "title": "Заголовок"
@@ -362,7 +10,448 @@
           "text": {
             "type": "string",
             "title": "Текст"
+          },
+          "submitLabel": {
+            "type": "string",
+            "title": "Текст кнопки"
+          },
+          "buttons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/ModalButton"
+            }
+          },
+          "actionButtons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/ScreenButton"
+            }
           }
+        }
+      },
+      "ComputeItem": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "NSI"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "title": "Значение"
+          },
+          "nsiRequest": {
+            "type": "string",
+            "title": "Тело запроса"
+          }
+        }
+      },
+      "RuleCondition": {
+        "properties": {
+          "fieldType": {
+            "type": "string",
+            "enum": [
+              "String",
+              "Integer",
+              "Boolean",
+              "Date",
+              "Array",
+              "ApplicantAnswer"
+            ]
+          },
+          "predicate": {
+            "type": "string",
+            "title": "Предикат"
+          },
+          "args": {
+            "title": "Аргументы",
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "title": "Значение"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "UserConst",
+                  "RequestData",
+                  "ProtectedField",
+                  "Variable"
+                ]
+              }
+            }
+          },
+          "field": {
+            "type": "string",
+            "title": "Идентификатор компонента"
+          },
+          "protectedField": {
+            "type": "string",
+            "title": "Защищенное поле"
+          },
+          "variable": {
+            "type": "string",
+            "title": "Системная переменная"
+          },
+          "visited": {
+            "type": "boolean",
+            "default": false
+          },
+          "value": {
+            "type": "string",
+            "title": "Значение поля"
+          }
+        }
+      },
+      "ModalButton": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Текст кнопки"
+          },
+          "closeModal": {
+            "type": "boolean",
+            "title": "Закрыть модалку по нажатию этой кнопки?",
+            "default": false
+          },
+          "color": {
+            "type": "string",
+            "title": "Цвет кнопки"
+          },
+          "action": {
+            "$ref": "#/definitions/ModalButtonAction"
+          }
+        }
+      },
+      "ModalButtonAction": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Тип кнопки"
+          },
+          "action": {
+            "type": "string",
+            "title": "Действие по нажатию на кнопку"
+          }
+        }
+      },
+      "ScreenButton": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Текст кнопки"
+          },
+          "value": {
+            "type": "string",
+            "title": "Значение, отправляемое по нажатию на кнопку"
+          },
+          "type": {
+            "type": "string",
+            "title": "Тип кнопки"
+          },
+          "action": {
+            "type": "string",
+            "title": "Действие при нажатии кнопки"
+          },
+          "color": {
+            "type": "string",
+            "title": "Цвет кнопки"
+          },
+          "deliriumAction": {
+            "type": "string",
+            "title": "Событие Delirium-а"
+          },
+          "multipleAnswers": {
+            "type": "array",
+            "title": "Множественные ответы",
+            "items": {
+              "$ref": "#/definitions/ScreenButtonMultipleAnswer"
+            }
+          }
+        },
+        "required": [
+          "label",
+          "type",
+          "action"
+        ]
+      },
+      "ScreenButtonMultipleAnswer": {
+        "properties": {
+          "screenId": {
+            "type": "string",
+            "title": "Идентификатор экрана"
+          },
+          "componentId": {
+            "type": "string",
+            "title": "Идентификатор компонента"
+          },
+          "priority": {
+            "type": "number",
+            "title": "Приоритет"
+          },
+          "value": {
+            "type": "string",
+            "title": "Значение"
+          }
+        }
+      },
+      "SubHeader": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Текст подзаголовка"
+          },
+          "clarifications": {
+            "type": "object",
+            "title": "Пояснения к заголовку и подзаголовку",
+            "additionalProperties": {
+              "title": "Идентификатор",
+              "description": "Для использования ссылки в заголовоке и подзаголовке экрана",
+              "type": "object",
+              "required": [
+                "title",
+                "text"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Заголовок модального окна",
+                  "description": "Введите заголовок модального окна"
+                },
+                "text": {
+                  "type": "string",
+                  "title": "Текст модального окна",
+                  "description": "Введите текст модального окна"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ScreenType": {
+        "type": "string",
+        "anyOf": [
+          {
+            "type": "string",
+            "enum": [
+              "UNIQUE"
+            ],
+            "title": "Unique"
+          },
+          {
+            "type": "string",
+            "enum": [
+              "CUSTOM"
+            ],
+            "title": "Custom"
+          },
+          {
+            "type": "string",
+            "enum": [
+              "INFO"
+            ],
+            "title": "Info"
+          }
+        ]
+      }
+    },
+    "title": "Добавление нового экрана",
+    "description": "Добавьте новый экран",
+    "type": "object",
+    "required": [
+      "name",
+      "type",
+      "header"
+    ],
+    "properties": {
+      "name": {
+        "type": "string",
+        "title": "Название экрана"
+      },
+      "type": {
+        "type": "string",
+        "title": "Тип экрана",
+        "default": "QUESTION"
+      },
+      "header": {
+        "type": "string",
+        "title": "Заголовок экрана"
+      },
+      "subHeader": {
+        "title": "Подзаголовок",
+        "$ref": "#/definitions/SubHeader"
+      },
+      "components": {
+        "type": "array",
+        "title": "Идентификаторы компонентов",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "maxItems": 1
+      },
+      "logicComponentIds": {
+        "type": "array",
+        "title": "Идентификаторы логических компонентов",
+        "items": {
+          "type": "string"
+        }
+      },
+      "cssClass": {
+        "type": "string",
+        "title": "Стиль экрана",
+        "description": "Нужно переделать на выпадающий список, когда актуализируют https://confluence.egovdev.ru/pages/viewpage.action?pageId=185945009"
+      },
+      "isTerminal": {
+        "type": "boolean",
+        "title": "isTerminal",
+        "description": "Указывает, что необходимо выполнить дополнительные шаги интеграции, например отправка в Delirium",
+        "default": false
+      },
+      "hideBackButton": {
+        "type": "boolean",
+        "title": "hideBackButton",
+        "description": "Не показывать кнопку назад, при этом не являясь финальным экраном",
+        "default": false
+      },
+      "ignoreSmevSend": {
+        "type": "boolean",
+        "title": "ignoreSmevSend",
+        "description": "Указывает, что дополнительные шаги интеграции следует игнорировать",
+        "default": false
+      },
+      "forceDeliriumCall": {
+        "type": "boolean",
+        "title": "forceDeliriumCall",
+        "description": "Указывает, что Delirium должен вызываться, даже если заявление не содержит участников. Работает только с терминальными экранами.",
+        "default": false
+      },
+      "notSendToSp": {
+        "type": "boolean",
+        "title": "notSendToSp",
+        "description": "Если экран терминальный, не отправлять в Service Processing",
+        "default": false
+      },
+      "isAccepted": {
+        "type": "boolean",
+        "title": "isAccepted",
+        "description": "Выставляет статус isAccepted для Delirium",
+        "default": false
+      },
+      "isFirstScreen": {
+        "type": "boolean",
+        "title": "isFirstScreen",
+        "description": "Задает возврат к основному сценарию из внутренних сценариев",
+        "default": false
+      },
+      "isImpasse": {
+        "type": "boolean",
+        "title": "isImpasse",
+        "description": "Если true, удалять черновик заявления при переходе на этот экран",
+        "default": false
+      },
+      "changeStage": {
+        "type": "boolean",
+        "title": "changeStage",
+        "description": "Указывает, нужно ли проверять stage черновика и возвращаться к экрану инициализации в случае изменения stage",
+        "default": false
+      },
+      "skipConditions": {
+        "type": "array",
+        "title": "Пропуск условий",
+        "items": {
+          "$ref": "#/definitions/RuleCondition"
+        }
+      },
+      "preloadComponents": {
+        "type": "array",
+        "title": "Идентификаторы компонентов для предзагрузки",
+        "items": {
+          "type": "string"
+        }
+      },
+      "initStages": {
+        "type": "array",
+        "title": "Этапы, запускающие логику экрана инициализации",
+        "items": {
+          "type": "string"
+        }
+      },
+      "infoComponents": {
+        "type": "array",
+        "title": "Идентификаторы информационных компонентов",
+        "items": {
+          "type": "string"
+        }
+      },
+      "buttons": {
+        "type": "array",
+        "title": "Кнопки экрана",
+        "items": {
+          "$ref": "#/definitions/ScreenButton"
+        }
+      },
+      "attrs": {
+        "type": "object",
+        "title": "Аттрибуты экрана",
+        "properties": {
+          "refs": {
+            "title": "Ссылки для заголовка и подзаголовка",
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "title": "Ссылка",
+                  "type": "string"
+                },
+                "converter": {
+                  "title": "Преобразование",
+                  "type": "string"
+                },
+                "format": {
+                  "title": "Формат",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "suggestion": {
+        "type": "object",
+        "title": "Suggest",
+        "properties": {
+          "groupId": {
+            "type": "string",
+            "title": "Идентификатор группы"
+          },
+          "saveGroupDataCheckboxId": {
+            "type": "string",
+            "title": "Поле suggestionId чекбокса на этом скрине. Если это поле не пустое и чекбокс не выбран, то значения не сохраняются. Необязательный параметр, если его не указать группу сохраняем."
+          },
+          "groupNameFieldId": {
+            "type": "string",
+            "title": "Поле suggestionId филда на этом скрине. Значение этого поля используется как имя группы для шаблонов."
+          }
+        }
+      },
+      "confirmations": {
+        "title": "Confirmations",
+        "type": "object",
+        "additionalProperties": {
+          "title": "Идентификатор",
+          "$ref": "#/definitions/Confirmation"
+        }
+      },
+      "computedAnswers": {
+        "title": "Вычисляемые поля",
+        "type": "object",
+        "additionalProperties": {
+          "title": "Идентификатор",
+          "$ref": "#/definitions/ComputeItem"
         }
       }
     }
