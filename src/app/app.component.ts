@@ -61,7 +61,7 @@ export class AppComponent {
         this.modelWithAdditionalPropertiesAsArrays,
     );
 
-    alert(JSON.stringify(values));
+    console.log(JSON.stringify(values, null, '\t'));
   }
 
   private resolveAdditionalPropertiesSchema(
