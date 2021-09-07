@@ -4,7 +4,7 @@ import { FieldType } from '@ngx-formly/core';
 @Component({
   selector: 'formly-object-type',
   template: `
-    <div class="mb-3">
+    <div class="mb-3 object-type">
       <legend *ngIf="to.label">{{ to.label }}</legend>
       <p *ngIf="to.description">{{ to.description }}</p>
       <div class="alert alert-danger" role="alert" *ngIf="showError && formControl.errors">

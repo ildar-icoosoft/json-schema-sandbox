@@ -4,7 +4,7 @@ import { FieldArrayType } from '@ngx-formly/core';
 @Component({
   selector: 'formly-array-type',
   template: `
-  <div class="mb-3">
+  <div class="mb-3 array-type">
     <legend *ngIf="to.label">{{ to.label }}</legend>
     <p *ngIf="to.description">{{ to.description }}</p>
 
